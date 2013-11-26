@@ -21,7 +21,8 @@ var text = [
 	'I Hope I Know What I\'m Doing'
 ]
 
-var showX = 7;
+// variable for showing preferred number of sections at a time
+var showX = 5;
 
 Survey = Backbone.View.extend({
 
@@ -52,54 +53,40 @@ Survey = Backbone.View.extend({
 
 		$('.survey').each(function() {
 			$(this).css('color', 'rgb(71, 86, 90)');
+			$(this).css('background', 'none');
 			$(this).removeClass('active');
 		})
 
 		this.$el.css('color', '#FFF');
+		this.$el.css('background', 'rgb(226, 226, 226)');
 
 		var change = findHeight(0, this.options.index - 1);
 
 		$('.surveys ul').css('top', '-' + change.toString() + 'px')
 		this.$el.addClass('active')
 		setHeight()
-		this.moveArrow()
 	},
-
-	moveArrow: function() {
-
-		var previousLiHeight = findHeight(this.options.index - 1, this.options.index)
-		var thisLiHeight = findHeight(this.options.index, this.options.index + 1)
-		var arrowHeight = $('.survey-arrow').height()
-
-		var arrowBottom = previousLiHeight + (thisLiHeight/2) + (arrowHeight/2);
-		$('.survey-arrow').css('bottom', arrowBottom.toString() + 'px');
-		console.log(arrowBottom)
-	}
-
 })
 
-text.forEach(function(item, index) {
-	var survey = new Survey({
-		text: item,
-		index: index
-	})
-})	
+$(document).ready(function() {
 
-setHeight()
+	text.forEach(function(item, index) {
+		var survey = new Survey({
+			text: item,
+			index: index
+		})
+	})	
+
+	setHeight()
+	upArrow()
+	downArrow()
+
+})
 
 function setHeight(start) {
 	$('.surveys').css('height', (findHeight(0, showX) + 25).toString() + 'px');
 }
 
-upArrow()
-downArrow()
-
-
-// function setHeight(start, end) {
-// 	$('.surveys').css('height', (findHeight(start, end) + 25).toString() + 'px');
-// }
-
-// $('.surveys').css('height', (findHeight(0, showX) + 25).toString() + 'px')
 
 function findHeight(start, x) {
 	var change = 0;
@@ -110,7 +97,6 @@ function findHeight(start, x) {
 
 	return change;
 }
-
 
 function findActive(active) {
 	$('.surveys ul li').each(function(index) {
