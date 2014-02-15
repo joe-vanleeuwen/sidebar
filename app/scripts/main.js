@@ -57,14 +57,15 @@ Survey = Backbone.View.extend({
 			$(this).removeClass('active');
 		})
 
-		this.$el.css('color', '#FFF');
-		this.$el.css('background', 'rgb(226, 226, 226)');
+		// this.$el.css('color', '#FFF');
+		this.$el.css('background', 'rgb(238, 238, 238)');
 
-		var change = findHeight(0, this.options.index - 1);
+		var change = findHeight(0, this.options.index - 1) + 5;
 
 		$('.surveys ul').css('top', '-' + change.toString() + 'px')
 		this.$el.addClass('active')
 		setHeight()
+		$('h1').text(this.options.text.toUpperCase())
 	},
 })
 

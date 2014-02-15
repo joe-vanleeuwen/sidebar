@@ -58,7 +58,8 @@ body {
     position: relative;
     overflow: hidden;
     width: 394px;
-    margin-left: -55px;
+    margin-left: -52px;
+    margin: 10px 0 10px -52px;
 
     ul {
         padding: 0;
@@ -72,6 +73,7 @@ body {
             color: rgb(71, 86, 90);
             position: relative;
             padding: 12.5px 134px 12.5px 100px;
+            border-radius: 5px 0 0 5px;
             -webkit-transition: background .8s ease;
         }
     }
